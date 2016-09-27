@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{e1a75f07-426e-45b0-ae4a-b4fab819e38f}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>environment.py</StartupFile>
+    <StartupFile>TestRunner.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -24,6 +24,9 @@
     <Compile Include="environment.py" />
     <Compile Include="Features\Steps\__init__.py" />
     <Compile Include="Features\__init__.py" />
+    <Compile Include="TestRunner.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
