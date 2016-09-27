@@ -2,9 +2,7 @@
 *.pyc
 *.netbeans_update_resouces
 *.netbeans_automatic_build
-*.sln
 *.suo
-*.pyproj
 *.TMP
 *.pdf
 *.VC.db
