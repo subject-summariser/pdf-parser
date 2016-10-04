@@ -10,8 +10,13 @@ def PrintSummary(NewSummary):
     print NewSummary.subject_name
 
     for assessment in NewSummary.assessments:
+        if assessment.DueDate == '':
+            assessment.DueDate = "Due date not found"
+
         print assessment.TaskName
-        print '    ' + assessment.TaskType
+        print '    Task Type: ' + assessment.TaskType
+        print '    Due: ' + assessment.DueDate
+        print '    Weighting: ' + assessment.Weighting
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "File Path")
@@ -41,6 +46,7 @@ if __name__ == "__main__":
                 elif "Parse" in e.message:
                     exit_code = ExitCodes.PARSE_ERROR
                 else:
+                    print e.message
                     exit_code = ExitCodes.GENERATION_FAILED
     else:
         exit_code = ExitCodes.MISSING_PATH

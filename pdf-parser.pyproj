@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{199c1c48-6499-44a3-9ec5-5273665aab8c}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>SummariseSubjectOutline.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+    <CommandLineArguments>--path "C:\Users\jacob\Downloads\SubOutlines\48434 Subject Outline.pdf"</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="contributors.txt" />
+    <Content Include="test\AcceptanceTest\Features\AssessmentSummaries.feature" />
+    <Content Include="test\AcceptanceTest\Features\PDFExtract.feature" />
+    <Content Include="test\AcceptanceTest\Features\SubjectSummaries.feature" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Parser\AssessmentItems.py" />
+    <Compile Include="Parser\SubjectItems.py" />
+    <Compile Include="Parser\Summary.py" />
+    <Compile Include="Parser\__init__.py" />
+    <Compile Include="SummariseSubjectOutline.py" />
+    <Compile Include="test\AcceptanceTest\environment.py" />
+    <Compile Include="test\AcceptanceTest\Features\Steps\__init__.py" />
+    <Compile Include="test\AcceptanceTest\Features\__init__.py" />
+    <Compile Include="test\AcceptanceTest\TestRunner.py" />
+    <Compile Include="test\AcceptanceTest\__init__.py" />
+    <Compile Include="test\UnitTest\__init__.py" />
+    <Compile Include="test\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Parser" />
+    <Folder Include="test" />
+    <Folder Include="test\AcceptanceTest" />
+    <Folder Include="test\AcceptanceTest\Features" />
+    <Folder Include="test\AcceptanceTest\Features\Steps" />
+    <Folder Include="test\UnitTest" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

@@ -11,8 +11,8 @@ def convert(file_path):
         for line in openfile:
             for invalid_char in ['\n', '\x0c']:
                 line = line.replace(invalid_char,'')
-
-            text.append(line)
+            if line != '':
+                text.append(line)
 
     os.remove("Temp.txt")
     
@@ -26,9 +26,10 @@ class Summary:
             raise Exception('Failed to Parse PDF')
 
         self.subject_name = SubjectName(__subject_outline_as_text).Name
+        self.program_start_date = ProgramStartDate(__subject_outline_as_text).StartDate
         #self.contact_info = ContactInfo().TutorContacts
         #self.topics = SubjectTopics().Topics
-        self.assessments = SubjectAssessments(__subject_outline_as_text).Assessments
+        self.assessments = SubjectAssessments(__subject_outline_as_text, self.program_start_date).Assessments
         #self.required_texts = RequiredTexts().Texts
         #self.supplementary_tasks = SupplementaryTasks().Tasks
         #self.late_penalty = LatePenalty().Penalty
