@@ -74,7 +74,7 @@ class AssessmentTask:
             return
 
         if self._check_group_work(_current_line):
-            self.GroupWork = GroupWork(_current_line).GroupType
+            self.GroupWork = GroupWork(self._text, self._current_index).GroupType
             if '' == self.GroupWork or None == self.GroupWork:
                 self.GroupWork = "Group work type not found"
             return
@@ -102,7 +102,7 @@ class AssessmentTask:
         return line.find('Type:') == 0
 
     def _check_group_work(self, line):
-        return False
+        return line.find('Group:') == 0 or line.find('Groupwork:') == 0
         
     def _check_task_description(self, line):
         return False
@@ -197,8 +197,12 @@ class TaskType:
 class GroupWork:
     GroupType = ""
 
-    def __init__(self, line):
-        raise NotImplementedError
+    def __init__(self, text, index):
+        _title_end_index = text[index].find(':')
+        if len(text[index]) > _title_end_index+1:
+            self.GroupType = line[_title_end_index+2:]
+        else:
+            self.GroupType = text[index+1]
 
 class TaskDescription:
     Description = ""

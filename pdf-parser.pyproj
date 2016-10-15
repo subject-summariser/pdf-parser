@@ -5,16 +5,18 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{199c1c48-6499-44a3-9ec5-5273665aab8c}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>SummariseSubjectOutline.py</StartupFile>
+    <StartupFile>test\AcceptanceTest\TestRunner.py</StartupFile>
     <SearchPath />
-    <WorkingDirectory>.</WorkingDirectory>
+    <WorkingDirectory>test\AcceptanceTest\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId />
     <InterpreterVersion />
-    <CommandLineArguments>--path "C:\Users\jacob\Downloads\SubOutlines\48434 Subject Outline.pdf"</CommandLineArguments>
+    <CommandLineArguments>
+    </CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -25,8 +27,6 @@
   <ItemGroup>
     <Content Include="contributors.txt" />
     <Content Include="test\AcceptanceTest\Features\AssessmentSummaries.feature" />
-    <Content Include="test\AcceptanceTest\Features\PDFExtract.feature" />
-    <Content Include="test\AcceptanceTest\Features\SubjectSummaries.feature" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parser\AssessmentItems.py" />
@@ -35,6 +35,9 @@
     <Compile Include="Parser\__init__.py" />
     <Compile Include="SummariseSubjectOutline.py" />
     <Compile Include="test\AcceptanceTest\environment.py" />
+    <Compile Include="test\AcceptanceTest\Features\Steps\AssessmentItemSteps.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="test\AcceptanceTest\Features\Steps\__init__.py" />
     <Compile Include="test\AcceptanceTest\Features\__init__.py" />
     <Compile Include="test\AcceptanceTest\TestRunner.py" />
