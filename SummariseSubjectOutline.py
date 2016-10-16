@@ -8,9 +8,9 @@ def enum(*sequential, **named):
 
 def PrintSubItem(Type, Value):
     if Value == "":
-        print "<" + Type + ": " + "Could not find field>"
+        print Type + ": " + "Could not find field"
         return
-    print "<" + Type + ": " + Value + ">"
+    print Type + ": " + Value
 
 def PrintSummary(NewSummary):
     PrintSubItem("Subject", NewSummary.subject_name)
