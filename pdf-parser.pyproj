@@ -5,16 +5,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{199c1c48-6499-44a3-9ec5-5273665aab8c}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>test\AcceptanceTest\TestRunner.py</StartupFile>
+    <StartupFile>SummariseSubjectOutline.py</StartupFile>
     <SearchPath />
-    <WorkingDirectory>test\AcceptanceTest\</WorkingDirectory>
+    <WorkingDirectory>
+    </WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId />
     <InterpreterVersion />
-    <CommandLineArguments>
-    </CommandLineArguments>
+    <CommandLineArguments>--path "C:\Users\jacob\Downloads\SubOutlines\48260 Subject Outline.pdf"</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>

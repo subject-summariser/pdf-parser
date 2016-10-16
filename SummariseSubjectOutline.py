@@ -6,17 +6,21 @@ def enum(*sequential, **named):
     enums = dict(zip(sequential, range(len(sequential))), **named)
     return type('Enum', (), enums)
 
+def PrintSubItem(Type, Value):
+    if Value == "":
+        print "<" + Type + ": " + "Could not find field>"
+        return
+    print "<" + Type + ": " + Value + ">"
+
 def PrintSummary(NewSummary):
-    print NewSummary.subject_name
+    PrintSubItem("Subject", NewSummary.subject_name)
 
     for assessment in NewSummary.assessments:
-        if assessment.DueDate == '':
-            assessment.DueDate = "Due date not found"
-
-        print assessment.TaskName
-        print '    Task Type: ' + assessment.TaskType
-        print '    Due: ' + assessment.DueDate
-        print '    Weighting: ' + assessment.Weighting
+        PrintSubItem("Task", assessment.TaskName)
+        PrintSubItem("Type", assessment.TaskType)
+        PrintSubItem("Weight", assessment.Weighting)
+        PrintSubItem("Due", assessment.DueDate)
+        PrintSubItem("Group", assessment.GroupWork)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "File Path")

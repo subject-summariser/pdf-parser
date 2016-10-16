@@ -41,6 +41,8 @@ class AssessmentTask:
 
         for i in range(start, end):
             self._current_index = i
+            if self._current_index == 252:
+                pass
             self._find_assessment_items()
 
         if "not found" in self.TaskType.lower():
@@ -200,7 +202,7 @@ class GroupWork:
     def __init__(self, text, index):
         _title_end_index = text[index].find(':')
         if len(text[index]) > _title_end_index+1:
-            self.GroupType = line[_title_end_index+2:]
+            self.GroupType = text[index][_title_end_index+2:]
         else:
             self.GroupType = text[index+1]
 
