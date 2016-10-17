@@ -65,7 +65,13 @@ class SupplementaryTasks:
     Tasks = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find('supplementary assessment') == 0:
+                for j in range(i+1, len(text)):
+                    if text[j] == "\n" or text[j].lower().find("minimum requirements") == 0:
+                        break
+                    self.Tasks += text[j]
+                return
 
 class LatePenalty:
     Penalty = ""
