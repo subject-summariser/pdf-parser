@@ -33,4 +33,4 @@ class Summary:
         self.required_texts = RequiredTexts(__subject_outline_as_text).Texts
         self.supplementary_tasks = SupplementaryTasks(__subject_outline_as_text).Tasks
         self.late_penalty = LatePenalty(__subject_outline_as_text).Penalty
-        #self.pass_criteria = PassCriteria(__subject_outline_as_text).Criteria
+        self.pass_criteria = PassCriteria(__subject_outline_as_text).Criteria

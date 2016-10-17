@@ -29,6 +29,7 @@ def PrintSummary(NewSummary):
 
     PrintSubItem("Topics", topics)
     PrintSubItem("Supplementary Assessments", NewSummary.supplementary_tasks)
+    PrintSubItem("Pass Criteria", NewSummary.pass_criteria)
 
     for assessment in NewSummary.assessments:
         PrintSubItem("Task", assessment.TaskName)

@@ -99,7 +99,13 @@ class PassCriteria:
     Criteria = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find("minimum requirements") == 0:
+                for j in range(i+1, len(text)):
+                    if text[j].lower().find("required texts") == 0 or j > i + 10:
+                        return  
+                    if text[j] != "\n":
+                        self.Criteria += text[j]
 
 class ProgramStartDate:
     StartDate = ""
