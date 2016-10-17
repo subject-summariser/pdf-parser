@@ -19,6 +19,8 @@ def PrintSummary(NewSummary):
     for text in NewSummary.required_texts:    
         recommended_texts += text
     PrintSubItem("Recommended Text", recommended_texts)
+    PrintSubItem("Late Penalty", NewSummary.late_penalty)
+
     for assessment in NewSummary.assessments:
         PrintSubItem("Task", assessment.TaskName)
         PrintSubItem("Type", assessment.TaskType)

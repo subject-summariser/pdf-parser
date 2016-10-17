@@ -31,20 +31,6 @@ class ContactInfo:
                 self.TutorContacts.append(Contact(text, i))
                 return
 
-class Date:
-    Day = ""
-    Month = ""
-    Year = ""
-    
-    def __init__(self, text):
-        raise NotImplementedError
-
-class TaskType:
-    Type = ""
-    
-    def __init__(self, text):
-        raise NotImplementedError
-
 class SubjectName:
     Name = ""
     
@@ -79,7 +65,19 @@ class LatePenalty:
     Penalty = ""
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            line_num = -1
+            if text[i].lower().find("late submission") != -1:
+                if text[i].lower().find("%") != -1:
+                    penalty_index = text[i].lower().find("%")
+                    line_num = i
+                elif text[i+1].lower().find("%") != -1:
+                    penalty_index = text[i+1].lower().find("%")
+                    line_num = i + 1
+
+                self.Penalty = text[line_num][penalty_index-2:penalty_index+1]
+                return
+            
 
 class PassCriteria:
     Criteria = ""

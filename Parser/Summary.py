@@ -32,5 +32,5 @@ class Summary:
         self.assessments = SubjectAssessments(__subject_outline_as_text, self.program_start_date).Assessments
         self.required_texts = RequiredTexts(__subject_outline_as_text).Texts
         #self.supplementary_tasks = SupplementaryTasks().Tasks
-        #self.late_penalty = LatePenalty().Penalty
+        self.late_penalty = LatePenalty(__subject_outline_as_text).Penalty
         #self.pass_criteria = PassCriteria().Criteria
