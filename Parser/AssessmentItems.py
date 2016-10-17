@@ -41,8 +41,6 @@ class AssessmentTask:
 
         for i in range(start, end):
             self._current_index = i
-            if self._current_index == 252:
-                pass
             self._find_assessment_items()
 
         if "not found" in self.TaskType.lower():
@@ -53,38 +51,26 @@ class AssessmentTask:
         
         if self._check_task_name(_current_line):
             self.TaskName = TaskName(_current_line).Name
-            if '' == self.TaskName or None == self.TaskName:
-                self.TaskName = "Task Name not found"
             return
         
         if self._check_due_date(_current_line):
             self.DueDate = DueDate(self._text, self._current_index, self._program_start).Date
-            if '' == self.DueDate or None == self.DueDate:
-                self.DueDate = "Due date not found"
             return
 
         if self._check_weight(_current_line):
             self.Weighting = Weighting(self._text, self._current_index).Weight
-            if '' == self.Weighting or None == self.Weighting:
-                self.Weighting = "Weighting not found"
             return
 
         if self._check_task_type(_current_line):
             self.TaskType = TaskType(self._text, self._current_index).Type
-            if '' == self.TaskType or None == self.TaskType:
-                self.TaskType = "Task type not found"
             return
 
         if self._check_group_work(_current_line):
             self.GroupWork = GroupWork(self._text, self._current_index).GroupType
-            if '' == self.GroupWork or None == self.GroupWork:
-                self.GroupWork = "Group work type not found"
             return
         
         if self._check_task_description(_current_line):
-            self.TaskDescription = TaskDescription(_current_line).Description
-            if '' == self.TaskDescription or None == self.TaskDescription:
-                self.TaskDescription = "Task Description not found"
+            self.TaskDescription = TaskDescription(self._text, self._current_index).Description
             return
 
     def _check_task_name(self, line):
@@ -107,7 +93,7 @@ class AssessmentTask:
         return line.find('Group:') == 0 or line.find('Groupwork:') == 0
         
     def _check_task_description(self, line):
-        return False
+        return line.find('Task:') == 0
 
     def _extract_type_from_name(self):
         _type_index = self.TaskName.find(":") + 2
@@ -124,6 +110,7 @@ class DueDate:
 
     def __init__(self, text, start_index, program_start):
         for i in range(start_index, len(text)):
+            text[i].replace('\n','')
             if self._is_time_format(text[i]):
                 self.Date = self._convert_date(text[i])
                 return
@@ -151,6 +138,7 @@ class DueDate:
         return False
 
     def _try_time_format(self, input, format):
+        input = input.replace('\n','')
         try:
             time.strptime(input, format)
             return True
@@ -164,6 +152,7 @@ class DueDate:
                 return self._convert_week(week_num, program_start)
 
     def _convert_week(self, week_num, program_start):
+        week_num = week_num.replace('\n','')
         try:
             dt = datetime.strptime(program_start + " 16", "%d %b %y")
             dt += timedelta(weeks=int(week_num))
@@ -172,6 +161,7 @@ class DueDate:
             return None
 
     def _convert_date(self, date):
+        date = date.replace('\n','')
         dt = datetime.strptime(date, self._time_format)
         return str(dt.day) + "/" + str(dt.month) + "/" + str(dt.year)
 
@@ -191,7 +181,7 @@ class TaskType:
     Type = ""
 
     def __init__(self, text, index):
-        if text[index+1] != '':
+        if text[index+1] != '' and text[index+1] != '\n':
             self.Type = text[index+1]
         else:
             self.Type = text[index+2]
@@ -204,10 +194,14 @@ class GroupWork:
         if len(text[index]) > _title_end_index+1:
             self.GroupType = text[index][_title_end_index+2:]
         else:
-            self.GroupType = text[index+1]
+            self.GroupType = text[index+2]
 
 class TaskDescription:
     Description = ""
 
-    def __init__(self, line):
-        raise NotImplementedError
+    def __init__(self, text, index):
+        for i in range(index+1, len(text)):
+            if text[i] == "\n" and (text[i+1].find(":") != -1 or text[i+1].find("Assessment") == 0 or text[i+1] == '\n') and len(self.Description) > 3:
+                break
+            if text[i] != '\n' and text[i].find(':') == -1:
+                self.Description += text[i]

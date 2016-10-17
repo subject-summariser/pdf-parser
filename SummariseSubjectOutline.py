@@ -7,13 +7,15 @@ def enum(*sequential, **named):
     return type('Enum', (), enums)
 
 def PrintSubItem(Type, Value):
-    if Value == "":
-        print "<" + Type + ": " + "Could not find field>"
+    if Value == "" or Value == "\n":
+        print "<" + Type + ": " + "NULL>"
         return
     print "<" + Type + ": " + Value + ">"
 
 def PrintSummary(NewSummary):
     PrintSubItem("Subject", NewSummary.subject_name)
+    PrintSubItem("Contact", NewSummary.contact_info[0].TutorName + NewSummary.contact_info[0].Email + NewSummary.contact_info[0].Phone + NewSummary.contact_info[0].Room)
+    
 
     for assessment in NewSummary.assessments:
         PrintSubItem("Task", assessment.TaskName)
@@ -21,6 +23,7 @@ def PrintSummary(NewSummary):
         PrintSubItem("Weight", assessment.Weighting)
         PrintSubItem("Due", assessment.DueDate)
         PrintSubItem("Group", assessment.GroupWork)
+        PrintSubItem("Description", assessment.TaskDescription)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "File Path")

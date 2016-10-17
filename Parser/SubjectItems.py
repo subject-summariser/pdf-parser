@@ -7,14 +7,29 @@ class Contact:
     Room = ""
     Phone = ""
 
-    def __init__(self, text):
-        raise NotImplementedError
+    def __init__(self, text, index):
+        for i in range(index+1, len(text)):
+            if text[i] != '\n':
+                if self.TutorName == "":
+                    self.TutorName = text[i]
+                else:
+                    if "@" in text[i].lower():
+                        self.Email = text[i]
+                    elif "room" in text[i].lower():
+                        self.Room = text[i]
+                    elif "phone" in text[i].lower() or "ph:" in text[i].lower():
+                        self.Phone = text[i]
+            if self.TutorName and self.Email and self.Room and self.Phone:
+                return
 
 class ContactInfo:
     TutorContacts = []      
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find("subject coordinator") == 0:
+                self.TutorContacts.append(Contact(text, i))
+                return
 
 class Date:
     Day = ""
@@ -71,12 +86,13 @@ class ProgramStartDate:
 
     def __init__(self, text):
         for i in range(0, len(text)):
-            if text[i].lower() == "program":
+            if text[i].lower().replace('\n','') == "program":
                 self._extract_program_start_date(text, i)
                 return
 
     def _extract_program_start_date(self, text, index):
         for i in range(index, len(text)):
+            text[i].replace('\n','')
             if text[i][0] == '1' and len(text[i]) < 4:
                 self.StartDate = self._find_next_date(text, i)
                 if self.StartDate == "" or self.StartDate == None:
@@ -95,6 +111,7 @@ class ProgramStartDate:
                 return self._find_monday(text[i])
 
     def _is_time_format(self, input):
+        input = input.replace('\n','')
         try:
             time.strptime(input, '%d %b')
             return True
