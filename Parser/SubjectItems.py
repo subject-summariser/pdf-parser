@@ -53,7 +53,13 @@ class SubjectTopics:
     Topics = []
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find("content (topics)") == 0:
+                for j in range(i+1, len(text)):
+                    if text[j].replace("\n",'') == "Program" or len(text[j]) > 80:
+                        return
+                    if text[j] != "\n" and len(text[j].replace("\n",'')) > 3: 
+                        self.Topics.append(text[j])
 
 class SupplementaryTasks:
     Tasks = ""

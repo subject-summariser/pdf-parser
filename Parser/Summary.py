@@ -28,9 +28,9 @@ class Summary:
         self.subject_name = SubjectName(__subject_outline_as_text).Name
         self.program_start_date = ProgramStartDate(__subject_outline_as_text).StartDate
         self.contact_info = ContactInfo(__subject_outline_as_text).TutorContacts
-        #self.topics = SubjectTopics().Topics
+        self.topics = SubjectTopics(__subject_outline_as_text).Topics
         self.assessments = SubjectAssessments(__subject_outline_as_text, self.program_start_date).Assessments
         self.required_texts = RequiredTexts(__subject_outline_as_text).Texts
         #self.supplementary_tasks = SupplementaryTasks().Tasks
         self.late_penalty = LatePenalty(__subject_outline_as_text).Penalty
-        #self.pass_criteria = PassCriteria().Criteria
+        #self.pass_criteria = PassCriteria(__subject_outline_as_text).Criteria
