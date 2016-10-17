@@ -15,8 +15,10 @@ def PrintSubItem(Type, Value):
 def PrintSummary(NewSummary):
     PrintSubItem("Subject", NewSummary.subject_name)
     PrintSubItem("Contact", NewSummary.contact_info[0].TutorName + NewSummary.contact_info[0].Email + NewSummary.contact_info[0].Phone + NewSummary.contact_info[0].Room)
-    
-
+    recommended_texts = ""
+    for text in NewSummary.required_texts:    
+        recommended_texts += text
+    PrintSubItem("Recommended Text", recommended_texts)
     for assessment in NewSummary.assessments:
         PrintSubItem("Task", assessment.TaskName)
         PrintSubItem("Type", assessment.TaskType)

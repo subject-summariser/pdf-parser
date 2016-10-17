@@ -30,7 +30,7 @@ class Summary:
         self.contact_info = ContactInfo(__subject_outline_as_text).TutorContacts
         #self.topics = SubjectTopics().Topics
         self.assessments = SubjectAssessments(__subject_outline_as_text, self.program_start_date).Assessments
-        #self.required_texts = RequiredTexts().Texts
+        self.required_texts = RequiredTexts(__subject_outline_as_text).Texts
         #self.supplementary_tasks = SupplementaryTasks().Tasks
         #self.late_penalty = LatePenalty().Penalty
         #self.pass_criteria = PassCriteria().Criteria

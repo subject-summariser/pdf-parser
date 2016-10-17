@@ -55,7 +55,13 @@ class RequiredTexts:
     Texts = []
     
     def __init__(self, text):
-        raise NotImplementedError
+        for i in range(0, len(text)):
+            if text[i].lower().find('required texts') == 0:
+                for j in range(i+1, len(text)):
+                    if text[j] == "\n":
+                        break
+                    self.Texts.append(text[j])
+                return
 
 class SubjectTopics:
     Topics = []
